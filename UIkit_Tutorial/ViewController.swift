@@ -9,6 +9,10 @@ import UIKit
 import SwiftUI
 
 class ViewController: UIViewController {
+    let lblTest = UILabel()
+    let btnTest = UIButton()
+    let testSlider = UISlider()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,7 +22,7 @@ class ViewController: UIViewController {
     }
     
     func configLbltest() {
-        let lblTest = UILabel()
+        
         lblTest.text = "Take your time, please"
         lblTest.translatesAutoresizingMaskIntoConstraints = false
         lblTest.font = .italicSystemFont(ofSize: 17)
@@ -36,10 +40,12 @@ class ViewController: UIViewController {
     }
     
     func configBtnTest() {
-        let btnTest = UIButton()
+        
         btnTest.setTitle("Click", for: .normal)
         btnTest.backgroundColor = .purple
         btnTest.translatesAutoresizingMaskIntoConstraints = false
+        
+        btnTest.addTarget(self, action: #selector(btnTestTapped), for: .touchUpInside)
         
         view.addSubview(btnTest)
         
@@ -49,8 +55,12 @@ class ViewController: UIViewController {
         btnTest.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20).isActive = true
     }
     
+    @objc func btnTestTapped() {
+        lblTest.text = "Thank you"
+    }
+    
     func configTestSlider() {
-        let testSlider = UISlider()
+        
         testSlider.translatesAutoresizingMaskIntoConstraints = false
         testSlider.maximumValue = 10
         testSlider.minimumValue = 0
