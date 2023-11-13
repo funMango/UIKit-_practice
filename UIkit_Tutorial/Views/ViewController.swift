@@ -9,6 +9,8 @@ import UIKit
 import SwiftUI
 
 class ViewController: UIViewController {
+    let testLabel = TestLabel()
+    
     let lblTest = UILabel()
     let btnTest = UIButton()
     let testSlider = UISlider()
@@ -16,27 +18,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configLbltest()
+        testLabel.configLbltest(lblTest)
+        
+        configureLblTest(lblTest)
         configBtnTest()
         configTestSlider()
     }
     
-    func configLbltest() {
-        
-        lblTest.text = "Take your time, please"
-        lblTest.translatesAutoresizingMaskIntoConstraints = false
-        lblTest.font = .italicSystemFont(ofSize: 17)
-        lblTest.textColor = .red
-        lblTest.numberOfLines = 0
-        lblTest.textAlignment = .center
-        lblTest.adjustsFontSizeToFitWidth = true
-        
-        view.addSubview(lblTest)
+    func configureLblTest(_ label: UILabel) {
+        view.addSubview(label)
         
         let safeArea = view.safeAreaLayoutGuide
-        lblTest.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16).isActive = true
-        lblTest.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 25).isActive = true
-        lblTest.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16).isActive = true
+        label.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16).isActive = true
+        label.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 25).isActive = true
+        label.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16).isActive = true
     }
     
     func configBtnTest() {
@@ -98,7 +93,7 @@ class ViewController: UIViewController {
     }
 }
 
-struct PreView: PreviewProvider {
+struct ViewController_PreView: PreviewProvider {
     static var previews: some View {
         ViewController().showPreview()
     }

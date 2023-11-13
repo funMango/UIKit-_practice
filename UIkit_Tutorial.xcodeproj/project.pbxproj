@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A159F7F2B01B3DC004E2427 /* TextFieldDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A159F7E2B01B3DC004E2427 /* TextFieldDemo.swift */; };
 		5A2507602AFDECA4006491A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25075F2AFDECA4006491A4 /* AppDelegate.swift */; };
 		5A2507622AFDECA4006491A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2507612AFDECA4006491A4 /* SceneDelegate.swift */; };
 		5A2507642AFDECA4006491A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2507632AFDECA4006491A4 /* ViewController.swift */; };
@@ -16,8 +17,8 @@
 		5A2507772AFDECA5006491A4 /* UIkit_TutorialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2507762AFDECA5006491A4 /* UIkit_TutorialTests.swift */; };
 		5A2507812AFDECA5006491A4 /* UIkit_TutorialUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2507802AFDECA5006491A4 /* UIkit_TutorialUITests.swift */; };
 		5A2507832AFDECA5006491A4 /* UIkit_TutorialUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2507822AFDECA5006491A4 /* UIkit_TutorialUITestsLaunchTests.swift */; };
-		5A2507912AFDF5B3006491A4 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2507902AFDF5B3006491A4 /* test.swift */; };
-		5A2507932AFE0062006491A4 /* UIViewPreiew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2507922AFE0062006491A4 /* UIViewPreiew.swift */; };
+		5A2507932AFE0062006491A4 /* UIViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2507922AFE0062006491A4 /* UIViewPreview.swift */; };
+		5A2507962AFE100F006491A4 /* TestLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2507952AFE100F006491A4 /* TestLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A159F7E2B01B3DC004E2427 /* TextFieldDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDemo.swift; sourceTree = "<group>"; };
 		5A25075C2AFDECA4006491A4 /* UIkit_Tutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIkit_Tutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A25075F2AFDECA4006491A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A2507612AFDECA4006491A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,8 +53,8 @@
 		5A25077C2AFDECA5006491A4 /* UIkit_TutorialUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIkit_TutorialUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A2507802AFDECA5006491A4 /* UIkit_TutorialUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIkit_TutorialUITests.swift; sourceTree = "<group>"; };
 		5A2507822AFDECA5006491A4 /* UIkit_TutorialUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIkit_TutorialUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		5A2507902AFDF5B3006491A4 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
-		5A2507922AFE0062006491A4 /* UIViewPreiew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewPreiew.swift; sourceTree = "<group>"; };
+		5A2507922AFE0062006491A4 /* UIViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewPreview.swift; sourceTree = "<group>"; };
+		5A2507952AFE100F006491A4 /* TestLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A159F7C2B01B363004E2427 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				5A2507652AFDECA4006491A4 /* Main.storyboard */,
+				5A25076A2AFDECA5006491A4 /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		5A159F7D2B01B384004E2427 /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				5A2507922AFE0062006491A4 /* UIViewPreview.swift */,
+			);
+			path = Preview;
+			sourceTree = "<group>";
+		};
 		5A2507532AFDECA4006491A4 = {
 			isa = PBXGroup;
 			children = (
@@ -103,13 +122,11 @@
 		5A25075E2AFDECA4006491A4 /* UIkit_Tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				5A159F7C2B01B363004E2427 /* StoryBoard */,
 				5A25078F2AFDF58D006491A4 /* Views */,
 				5A25075F2AFDECA4006491A4 /* AppDelegate.swift */,
 				5A2507612AFDECA4006491A4 /* SceneDelegate.swift */,
-				5A2507632AFDECA4006491A4 /* ViewController.swift */,
-				5A2507652AFDECA4006491A4 /* Main.storyboard */,
 				5A2507682AFDECA5006491A4 /* Assets.xcassets */,
-				5A25076A2AFDECA5006491A4 /* LaunchScreen.storyboard */,
 				5A25076D2AFDECA5006491A4 /* Info.plist */,
 			);
 			path = UIkit_Tutorial;
@@ -135,10 +152,20 @@
 		5A25078F2AFDF58D006491A4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5A2507902AFDF5B3006491A4 /* test.swift */,
-				5A2507922AFE0062006491A4 /* UIViewPreiew.swift */,
+				5A159F7D2B01B384004E2427 /* Preview */,
+				5A2507942AFE0FE1006491A4 /* Labels */,
+				5A2507632AFDECA4006491A4 /* ViewController.swift */,
+				5A159F7E2B01B3DC004E2427 /* TextFieldDemo.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5A2507942AFE0FE1006491A4 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				5A2507952AFE100F006491A4 /* TestLabel.swift */,
+			);
+			path = Labels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,9 +299,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A2507932AFE0062006491A4 /* UIViewPreiew.swift in Sources */,
+				5A2507962AFE100F006491A4 /* TestLabel.swift in Sources */,
+				5A2507932AFE0062006491A4 /* UIViewPreview.swift in Sources */,
+				5A159F7F2B01B3DC004E2427 /* TextFieldDemo.swift in Sources */,
 				5A2507642AFDECA4006491A4 /* ViewController.swift in Sources */,
-				5A2507912AFDF5B3006491A4 /* test.swift in Sources */,
 				5A2507602AFDECA4006491A4 /* AppDelegate.swift in Sources */,
 				5A2507622AFDECA4006491A4 /* SceneDelegate.swift in Sources */,
 			);
