@@ -16,10 +16,10 @@ class TableViewDemo: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        table = UITableView()   // Initialize UITableView
+        table = UITableView()
         table.delegate = self
         table.dataSource = self
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")  // Register cell identifier
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         layout()
     }
     
@@ -56,6 +56,3 @@ extension TableViewDemo: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
-
-
-

@@ -27,7 +27,7 @@ class CollectionViewDemo: UIViewController {
     }
     */
     
-    struct AutoLayoutDemo_Preview: PreviewProvider {
+    struct CollectionViewDemo_Preview: PreviewProvider {
         static var previews: some View {
             CollectionViewDemo().showPreview()
         }
