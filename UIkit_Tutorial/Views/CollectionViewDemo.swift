@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class AutoLayoutDemo: UIViewController {
+class CollectionViewDemo: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class AutoLayoutDemo: UIViewController {
     
     struct AutoLayoutDemo_Preview: PreviewProvider {
         static var previews: some View {
-            AutoLayoutDemo().showPreview()
+            CollectionViewDemo().showPreview()
         }
     }
 
