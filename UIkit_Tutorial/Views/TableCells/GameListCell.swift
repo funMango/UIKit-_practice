@@ -10,39 +10,51 @@ import SwiftUI
 
 
 class GameListCell: UITableViewCell {
-    var deviceImg = UIImageView()
-    var name = UILabel()
-    var rank = UILabel()
-    let stackView = UIStackView()
+    var game: Game = Game(title: "", rank: 0, deviceImg: "")
+    
+    lazy var deviceImg: UIImageView = {
+        let temp = UIImageView()
+        temp.image = UIImage(systemName: game.deviceImg)
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        return temp
+    }()
+    
+    lazy var name: UILabel = {
+        let temp = UILabel()
+        temp.text = game.title
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        return temp
+    }()
+    
+    lazy var rank: UILabel = {
+        let temp = UILabel()
+        temp.text = String(game.rank)
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        return temp
+    }()
+    
+    var stackView: UIStackView = {
+        let temp = UIStackView()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.axis = .horizontal
+        temp.spacing = 8
+        temp.distribution = .fill
+        temp.alignment = .leading
+        return temp
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        stackViewstyle()
-        stackViewLayout()
     }
     
-    convenience init(style: UITableViewCell.CellStyle, reuseIdentifier: String?, image: String, name: String, rank: Int) {
+    convenience init(style: UITableViewCell.CellStyle, reuseIdentifier: String?, game: Game) {
         self.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.deviceImg.image = UIImage(systemName: image)
-        self.name.text = name
-        self.rank.text = String(rank)
+        self.game = game
+        stackViewLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("Error")
-    }
-    
-    func stackViewstyle() {
-        deviceImg.translatesAutoresizingMaskIntoConstraints = false
-        deviceImg.contentMode = .scaleAspectFit
-        
-        name.translatesAutoresizingMaskIntoConstraints = false
-        
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.spacing = 8
-        stackView.distribution = .fill
-        stackView.alignment = .leading
     }
     
     func stackViewLayout() {
@@ -70,7 +82,7 @@ struct CustomCellPreview: PreviewProvider {
     struct CellPreviewContainer: UIViewRepresentable {
         
         func makeUIView(context: UIViewRepresentableContext<CustomCellPreview.CellPreviewContainer>) -> UITableViewCell {
-            return GameListCell(style: .default, reuseIdentifier: "Cell", image: "xbox.logo", name: "Zelda", rank: 1)
+            return GameListCell(style: .default, reuseIdentifier: "Cell", game: Game(title: "Zelda", rank: 1, deviceImg: "playstation.logo"))
         }
         
         func updateUIView(_ uiView: UITableViewCell, context:

@@ -50,7 +50,7 @@ extension TableViewDemo: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let game = data[indexPath.row]
-        let cell = GameListCell(style: .default, reuseIdentifier: "cell", image: game.deviceImg, name: game.title, rank: game.rank)
+        let cell = GameListCell(style: .default, reuseIdentifier: "cell", game: game)
                 
         return cell
     }
