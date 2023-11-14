@@ -10,15 +10,15 @@ import Foundation
 struct Game: Hashable {
     let title: String
     let rank: Int
-    let image: String
+    let deviceImg: String
 }
 
 extension Game {
     static var data = [
-        Game(title: "밸런스 게임", rank: 1, image: "circle.square"),
-        Game(title: "이구동성", rank: 2, image: "arcade.stick.console"),
-        Game(title: "OX 게임", rank: 3, image: "gamecontroller.fill"),
-        Game(title: "상식퀴즈", rank: 4, image: "playstation.logo"),
-        Game(title: "초성게임", rank: 5, image: "xbox.logo"),
+        Game(title: "Zelda", rank: 1, deviceImg: "playstation.logo"),
+        Game(title: "Mario", rank: 2, deviceImg: "playstation.logo"),
+        Game(title: "Halo infinite", rank: 3, deviceImg: "xbox.logo"),
+        Game(title: "Fortnine", rank: 4, deviceImg: "playstation.logo"),
+        Game(title: "Far cry5", rank: 5, deviceImg: "xbox.logo"),
     ]
 }

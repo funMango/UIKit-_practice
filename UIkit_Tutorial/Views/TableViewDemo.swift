@@ -12,7 +12,7 @@ class TableViewDemo: UIViewController {
     
     var table: UITableView!
 
-    let testArr = ["a", "b", "c", "d", "e", "f", "g"]
+    let data = Game.data
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,14 +45,13 @@ class TableViewDemo: UIViewController {
 
 extension TableViewDemo: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return testArr.count  // Add return statement
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
-        
-        cell.textLabel?.text = testArr[indexPath.row]
-        
+        let game = data[indexPath.row]
+        let cell = GameListCell(style: .default, reuseIdentifier: "cell", image: game.deviceImg, name: game.title, rank: game.rank)
+                
         return cell
     }
 }
