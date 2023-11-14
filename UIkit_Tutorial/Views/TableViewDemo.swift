@@ -19,10 +19,10 @@ class TableViewDemo: UIViewController {
         table = UITableView()
         table.delegate = self
         table.dataSource = self
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(GameListCell.self, forCellReuseIdentifier: GameListCell.identifier)
         layout()
     }
-    
+           
     func layout() {
         view.addSubview(table)
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +40,6 @@ class TableViewDemo: UIViewController {
             TableViewDemo().showPreview()
         }
     }
-
 }
 
 extension TableViewDemo: UITableViewDelegate, UITableViewDataSource {
@@ -49,9 +48,18 @@ extension TableViewDemo: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: GameListCell.identifier, for: indexPath) as! GameListCell
         let game = data[indexPath.row]
-        let cell = GameListCell(style: .default, reuseIdentifier: "cell", game: game)
-                
+        
+        cell.gameImg.image = UIImage(named: game.image)
+        cell.title.text = game.title
+        cell.releaseDate.text = game.releaseDate
+        cell.deviceImg.image = UIImage(systemName: game.deviceImg)
+                                                                  
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120 // 수동으로 높이를 설정
     }
 }
