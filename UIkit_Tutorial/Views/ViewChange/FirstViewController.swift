@@ -19,10 +19,10 @@ class FirstViewController: UIViewController {
         self.navigationController?.pushViewController(SecondViewController(), animated: true)
     }))
     
-    private lazy var titleLabel: UILabel = {
-        let title = UILabel()
+    lazy var titleLabel: UILabel = {
+        let title = UILabel(frame: CGRect(x: view.frame.width/2 - 125, y: 300, width: 250, height: 50))
         title.text = "First View"
-        title.font = UIFont.systemFont(ofSize: 30)
+        title.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         return title
     }()
         
