@@ -41,7 +41,7 @@ class GameDetailView: UIViewController {
     
     lazy var gameImage: UIImageView = {
       let imageView = UIImageView()
-      imageView.contentMode = .scaleAspectFit
+      imageView.contentMode = .scaleAspectFill
       imageView.image = UIImage(named: game.image)
       return imageView
     }()
@@ -107,39 +107,41 @@ class GameDetailView: UIViewController {
         contentViewHeight.priority = .defaultLow
         contentViewHeight.isActive = true
         
-        let imageHeightConstraint = gameImage.heightAnchor.constraint(equalTo: gameImage.widthAnchor)
-            imageHeightConstraint.priority = .defaultHigh
+        
+        let leadingValue: CGFloat = 30
+        let trailingValue: CGFloat = -30
+        
         gameImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             gameImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            gameImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            gameImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            gameImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -20),
-            imageHeightConstraint,
+            gameImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: leadingValue),
+            gameImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: trailingValue),
+            gameImage.widthAnchor.constraint(equalToConstant: 400),
+            gameImage.heightAnchor.constraint(equalToConstant: 500),
         ])
         
         
         gameTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             gameTitle.topAnchor.constraint(equalTo: gameImage.bottomAnchor, constant: 10),
-            gameTitle.leadingAnchor.constraint(equalTo: gameImage.leadingAnchor, constant: 36),
-            gameTitle.trailingAnchor.constraint(equalTo: gameImage.trailingAnchor, constant: -36),
+            gameTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: leadingValue),
+            gameTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: trailingValue),
         ])
 
         
         publisherLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             publisherLabel.topAnchor.constraint(equalTo: gameTitle.bottomAnchor, constant: 0),
-            publisherLabel.leadingAnchor.constraint(equalTo: gameImage.leadingAnchor, constant: 36),
-            publisherLabel.trailingAnchor.constraint(equalTo: gameImage.trailingAnchor, constant: -36),
+            publisherLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: leadingValue),
+            publisherLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: trailingValue),
         ])
 
         
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: publisherLabel.bottomAnchor, constant: 20),
-            descriptionLabel.leadingAnchor.constraint(equalTo: gameImage.leadingAnchor, constant: 36),
-            descriptionLabel.trailingAnchor.constraint(equalTo: gameImage.trailingAnchor, constant: -36),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: leadingValue),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: trailingValue),
             descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
         ])
     }

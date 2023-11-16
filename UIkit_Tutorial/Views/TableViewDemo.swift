@@ -8,10 +8,9 @@
 import UIKit
 import SwiftUI
 
-protocol sendData {
-    func send(data: Game)            
-}
-
+//protocol sendData {
+//    func send(data: Game)
+//}
 
 class TableViewDemo: UIViewController {
     
@@ -21,6 +20,7 @@ class TableViewDemo: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Game List"
         table = UITableView()
         table.delegate = self
         table.dataSource = self
