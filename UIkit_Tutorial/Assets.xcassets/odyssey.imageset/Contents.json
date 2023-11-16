@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "odyssey.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "odyssey.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },

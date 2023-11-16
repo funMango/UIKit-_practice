@@ -125,7 +125,7 @@ struct CustomCellPreview: PreviewProvider {
                  deviceImg: "xbox.logo")
             let gameCell = GameListCell()
             
-            gameCell.gameImg.image = UIImage(named: "ARK")
+            gameCell.gameImg.image = UIImage(named: game.image)
             gameCell.title.text = game.title
             gameCell.releaseDate.text = game.releaseDate
             gameCell.deviceImg.image = UIImage(systemName: game.deviceImg)

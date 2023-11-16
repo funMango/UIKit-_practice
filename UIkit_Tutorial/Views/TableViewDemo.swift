@@ -8,6 +8,11 @@
 import UIKit
 import SwiftUI
 
+protocol sendData {
+    func send(data: Game)            
+}
+
+
 class TableViewDemo: UIViewController {
     
     var table: UITableView!
@@ -28,10 +33,10 @@ class TableViewDemo: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            table.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            table.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            table.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            table.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            table.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            table.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
         ])
     }
     
@@ -57,6 +62,12 @@ extension TableViewDemo: UITableViewDelegate, UITableViewDataSource {
         cell.deviceImg.image = UIImage(systemName: game.deviceImg)
                                                                   
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let game = data[indexPath.row]
+        self.navigationController?.pushViewController(GameDetailView(game: game), animated: true)
+        
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

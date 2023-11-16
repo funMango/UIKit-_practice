@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 class GameDetailView: UIViewController {
-    let game = Game(
+    private var game = Game(
        title: "Default",
        image: "OdysseyOrigin",
        publisher: "Default",
@@ -29,6 +29,15 @@ class GameDetailView: UIViewController {
        deviceImg: "xbox.logo")
     let scrollView = UIScrollView()
     let contentView = UIView()
+    
+    init(game: Game) {
+        self.game = game
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     lazy var gameImage: UIImageView = {
       let imageView = UIImageView()
@@ -138,7 +147,24 @@ class GameDetailView: UIViewController {
 
 struct GameDetailView_Preview: PreviewProvider {
     static var previews: some View {
-        GameDetailView().showPreview()
+        GameDetailView(game: Game(
+            title: "Default",
+            image: "OdysseyOrigin",
+            publisher: "Default",
+            develoer: "Default",
+            description:
+                """
+                ASSASSIN’S CREED® ORIGINS에서 펼쳐지는 새로운 시작
+                위엄과 음모가 공존하던 시대, 고대 이집트가 무자비한 권력 투쟁 속에 사라져 갈 위기에 처해 있습니다. 암살단이 창립된 그때로 돌아가 잔혹한 비밀과 잊혀진 신화의 베일을 벗기십시오.\n
+                전설 속의 국가를 체험하십시오\n
+                나일 강을 항해하고, 이 거대하고 예측불가한 지역을 탐험하며 피라미드의 신비를 밝히거나 위험한 고대 세력 및 야수들과 싸우십시오.\n
+                ASSASSIN’S CREED® ORIGINS에서 펼쳐지는 새로운 시작
+                위엄과 음모가 공존하던 시대, 고대 이집트가 무자비한 권력 투쟁 속에 사라져 갈 위기에 처해 있습니다. 암살단이 창립된 그때로 돌아가 잔혹한 비밀과 잊혀진 신화의 베일을 벗기십시오.\n
+                전설 속의 국가를 체험하십시오\n
+                나일 강을 항해하고, 이 거대하고 예측불가한 지역을 탐험하며 피라미드의 신비를 밝히거나 위험한 고대 세력 및 야수들과 싸우십시오.
+                """,
+            releaseDate: "2017. 10. 27.",
+            deviceImg: "xbox.logo")).showPreview()
     }
 }
 

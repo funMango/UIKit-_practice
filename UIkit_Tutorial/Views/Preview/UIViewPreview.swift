@@ -12,6 +12,7 @@ enum DeviceType {
     case iPhone8
     case iPhone14Pro
     case iPhone14ProMax
+    case iPad
 
     func name() -> String {
         switch self {
@@ -23,7 +24,10 @@ enum DeviceType {
             return "iPhone 14 Pro"
         case .iPhone14ProMax:
             return "iPhone 14 Pro Max"
+        case .iPad:
+            return "iPad (10th generation)"
         }
+        
     }
 }
 
@@ -42,7 +46,7 @@ extension UIViewController {
         }
     }
 
-    func showPreview(_ deviceType: DeviceType = .iPhone14Pro) -> some View {
+    func showPreview(_ deviceType: DeviceType = .iPhone14ProMax) -> some View {
         Preview(viewController: self).previewDevice(PreviewDevice(rawValue: deviceType.name()))
     }
 }

@@ -21,14 +21,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 첫번째 화면 바꾸기
 //        guard let scene = (scene as? UIWindowScene) else { return }
 //        window = UIWindow(frame: UIScreen.main.bounds)
-//        window?.rootViewController = TableViewDemo()
+//        window?.rootViewController = GameDetailView()
+//        window?.windowScene = scene
+//        window?.makeKeyAndVisible()
+        
+//        // navigationController 등록
+//        guard let scene = (scene as? UIWindowScene) else { return }
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        let navVC = UINavigationController(rootViewController: FirstViewController())
+//        window?.rootViewController = navVC
 //        window?.windowScene = scene
 //        window?.makeKeyAndVisible()
         
         // navigationController 등록
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
-        let navVC = UINavigationController(rootViewController: FirstViewController())
+        let navVC = UINavigationController(rootViewController: TableViewDemo())
         window?.rootViewController = navVC
         window?.windowScene = scene
         window?.makeKeyAndVisible()
