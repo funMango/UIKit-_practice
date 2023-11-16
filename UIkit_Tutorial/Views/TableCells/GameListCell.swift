@@ -16,39 +16,6 @@ class GameListCell: UITableViewCell {
     let title = UILabel()
     let releaseDate = UILabel()
     let deviceImg = UIImageView()
-              
-//    lazy var gameImg: UIImageView = {
-//        let temp = UIImageView()
-//        temp.contentMode = .scaleAspectFill
-//        //temp.image = UIImage(named: game.image)
-//        temp.translatesAutoresizingMaskIntoConstraints = false
-//        return temp
-//    }()
-//
-//    lazy var title: UILabel = {
-//        let temp = UILabel()
-//        //temp.text = game.title
-//        temp.font = UIFont.systemFont(ofSize: 15)
-//        temp.translatesAutoresizingMaskIntoConstraints = false
-//        return temp
-//    }()
-//
-//    lazy var releaseDate: UILabel = {
-//        let temp = UILabel()
-//        //temp.text = game.releaseDate
-//        temp.textColor = .gray
-//        temp.font = UIFont.systemFont(ofSize: 12)
-//        temp.translatesAutoresizingMaskIntoConstraints = false
-//        return temp
-//    }()
-//
-//    lazy var deviceImg: UIImageView = {
-//        let temp = UIImageView()
-//        //temp.image = UIImage(systemName: game.deviceImg)
-//        temp.tintColor = .gray
-//        temp.translatesAutoresizingMaskIntoConstraints = false
-//        return temp
-//    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -76,30 +43,28 @@ class GameListCell: UITableViewCell {
     }
     
     func layout() {
-        self.addSubview(gameImg)
-        self.addSubview(title)
-        self.addSubview(releaseDate)
-        self.addSubview(deviceImg)
-                
-        let safeArea = self.safeAreaLayoutGuide
+        contentView.addSubview(gameImg)
+        contentView.addSubview(title)
+        contentView.addSubview(releaseDate)
+        contentView.addSubview(deviceImg)
         
         NSLayoutConstraint.activate([
             gameImg.widthAnchor.constraint(equalToConstant: 50),
             gameImg.heightAnchor.constraint(equalToConstant: 100),
-            gameImg.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 10),
-            gameImg.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+            gameImg.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            gameImg.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             
-            title.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 10),
+            title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             title.leadingAnchor.constraint(equalTo: gameImg.trailingAnchor, constant: 15),
             
             releaseDate.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 3),
             releaseDate.leadingAnchor.constraint(equalTo: gameImg.trailingAnchor, constant: 15),
             
-            deviceImg.bottomAnchor.constraint(equalTo: gameImg.bottomAnchor, constant: -10),
-            deviceImg.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -10),
-            
+            deviceImg.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            deviceImg.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
         ])
     }
+
 }
 
 struct CustomCellPreview: PreviewProvider {
