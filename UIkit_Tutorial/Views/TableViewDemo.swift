@@ -60,7 +60,19 @@ extension TableViewDemo {
         let game = data[indexPath.row]
         self.navigationController?.pushViewController(GameDetailView(game: game), animated: true)
     }
-
+    
+    // 편집 모드에서 셀의 이동을 가능하게 합니다.
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    // 셀의 위치를 변경하고 데이터를 업데이트합니다.
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedItem = data.remove(at: sourceIndexPath.row)
+        data.insert(movedItem, at: destinationIndexPath.row)
+    }
+    
+    // 옆으로 밀어서 삭제기능 실행
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             data.remove(at: indexPath.row)
