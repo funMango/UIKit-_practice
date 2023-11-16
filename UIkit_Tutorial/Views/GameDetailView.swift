@@ -8,7 +8,8 @@
 import UIKit
 import SwiftUI
 
-class GameDetailView: UIViewController {
+class GameDetailView: UIViewController {    
+    
     private var game = Game(
        title: "Default",
        image: "OdysseyOrigin",
@@ -102,7 +103,7 @@ class GameDetailView: UIViewController {
             
         ])
         
-        
+        // Scroll 설정
         let contentViewHeight = contentView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor)
         contentViewHeight.priority = .defaultLow
         contentViewHeight.isActive = true
