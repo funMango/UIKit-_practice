@@ -8,14 +8,17 @@
 import UIKit
 import SwiftUI
 
-class TableViewDemo: UITableViewController {
-    var data = Game.data
+class TableViewDemo: UITableViewController, UISearchResultsUpdating {
+    var gameData = Game.data
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationItem.title = "Game List"
         self.navigationItem.rightBarButtonItem = editButtonItem
+        
+        configSearchBar()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -27,6 +30,23 @@ class TableViewDemo: UITableViewController {
         static var previews: some View {
             TableViewDemo().showPreview()
         }
+    }
+    
+    func configSearchBar() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "검색 입력"
+        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.searchResultsUpdater = self
+        
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+
+        gameData = Game.data.filter { $0.title.contains(text) }
+        self.tableView.reloadData()
     }
 
     // loadView를 사용하여 tableView를 직접 할당
@@ -41,12 +61,12 @@ class TableViewDemo: UITableViewController {
 
 extension TableViewDemo {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return self.gameData.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GameListCell.identifier, for: indexPath) as! GameListCell
-        let game = data[indexPath.row]
+        let game = gameData[indexPath.row]
 
         cell.gameImg.image = UIImage(named: game.image)
         cell.title.text = game.title
@@ -57,7 +77,7 @@ extension TableViewDemo {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let game = data[indexPath.row]
+        let game = gameData[indexPath.row]
         self.navigationController?.pushViewController(GameDetailView(game: game), animated: true)
     }
     
@@ -68,14 +88,14 @@ extension TableViewDemo {
     
     // 셀의 위치를 변경하고 데이터를 업데이트합니다.
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let movedItem = data.remove(at: sourceIndexPath.row)
-        data.insert(movedItem, at: destinationIndexPath.row)
+        let movedItem = gameData.remove(at: sourceIndexPath.row)
+        gameData.insert(movedItem, at: destinationIndexPath.row)
     }
     
     // 옆으로 밀어서 삭제기능 실행
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            data.remove(at: indexPath.row)
+            gameData.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // 필요한 경우 추가 구현
@@ -86,3 +106,4 @@ extension TableViewDemo {
         return 120
     }
 }
+
