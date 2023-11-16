@@ -81,5 +81,36 @@ extension Game {
              """,
              releaseDate: "2022. 9. 30.",
              deviceImg: "xbox.logo"),
+        
+        Game(title: "HALO Infinite",
+             image: "HALO",
+             publisher: "Xbox Game Studios",
+             develoer: "343 Industries",
+             description:
+             """
+             시즌 5: Reckoning에서는 공세에서 영감을 얻은 보상, 새로운 지도, 새로운 모드, 정교한 Forge용 AI 툴킷이 포함된 완전히 새로운 배틀 패스가 제공됩니다. 또한 시즌 5에서 이후에 선보이는 Firefight: King of the Hill에서는 참신한 반전이 담긴 사랑받는 협동 턴제 서바이벌 모드를 제공합니다.\n
+             캠페인 네트워크 협동 및 임무 리플레이:
+             캠페인 네트워크 협동을 통해 여러분과 최대 세 명의 친구가 Xbox와 PC 어디서든 14개의 새로운 도전 과제에 도전하고 배니시드와 싸워 Zeta Halo의 경이로움을 경험할 수 있습니다.
+             임무 리플레이의 도입으로, 여러분은 마음에 드는 순간을 다시 체험하고, 수집품을 재발견하고, 경이로운 Zeta Halo를 혼자서 또는 최대 세 명의 화력조 팀원과 함께 탐험할 수 있습니다!
+
+             """,
+             releaseDate: "2023. 9. 29.",
+             deviceImg: "xbox.logo"),
+        
+        Game(title: "EA SPORTS FC™ 24 Standard Edition",
+             image: "fc24",
+             publisher: "Electronic Arts",
+             develoer: "EA Canada",
+             description:
+             """
+             EA SPORTS FC™ 24는 The World’s Game의 새로운 시대를 엽니다. 19,000명 이상의 정식 라이선스 선수, 700개 이상의 팀, 30개 이상의 리그를 바탕으로 역대 최고로 현실감 넘치는 축구 경험을 선사합니다.\n
+
+             HyperMotionV**, Opta에 의해 최적화된 플레이스타일, 향상된 Frostbite™ 엔진 등 모든 매치에서 비할 데 없는 현실감을 제공하는 세 가지 최첨단 기술로 게임을 더욱 가까이에서 즐기세요.
+             HyperMotionV는 게임 내 움직임이 실제 경기장에서의 움직임을 정확하게 반영하도록 180개 이상의 남녀 프로 매치의 볼류메트릭 데이터를 사용하여 현실에 가까운 게임플레이를 구현합니다.
+             플레이스타일은 Opta 및 기타 소스의 데이터를 각 선수의 현실감과 개성을 높이는 시그니처 능력으로 해석하여 선수들을 입체적으로 구현합니다.
+             향상된 Frostbite™ 엔진은 The World’s Game에 생생한 디테일을 더해주며 각 경기에 새로운 차원의 몰입감을 선사합니다.
+             """,
+             releaseDate: "2023. 9. 29.",
+             deviceImg: "xbox.logo"),
     ]
 }
