@@ -8,69 +8,69 @@
 import UIKit
 import SwiftUI
 
-//protocol sendData {
-//    func send(data: Game)
-//}
-
-class TableViewDemo: UIViewController {
-    
-    var table: UITableView!
-
-    let data = Game.data
+class TableViewDemo: UITableViewController {
+    var data = Game.data
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
         self.navigationItem.title = "Game List"
-        table = UITableView()
-        table.delegate = self
-        table.dataSource = self
-        table.register(GameListCell.self, forCellReuseIdentifier: GameListCell.identifier)
-        layout()
+        self.navigationItem.rightBarButtonItem = editButtonItem
     }
-           
-    func layout() {
-        view.addSubview(table)
-        table.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            table.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            table.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
-            table.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            table.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
-        ])
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
-    
+
     struct TableViewDemo_Preview: PreviewProvider {
         static var previews: some View {
             TableViewDemo().showPreview()
         }
     }
+
+    // loadView를 사용하여 tableView를 직접 할당
+    override func loadView() {
+        tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(GameListCell.self, forCellReuseIdentifier: GameListCell.identifier)
+        view = tableView
+    }
 }
 
-extension TableViewDemo: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension TableViewDemo {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GameListCell.identifier, for: indexPath) as! GameListCell
         let game = data[indexPath.row]
-        
+
         cell.gameImg.image = UIImage(named: game.image)
         cell.title.text = game.title
         cell.releaseDate.text = game.releaseDate
         cell.deviceImg.image = UIImage(systemName: game.deviceImg)
-                                                                  
+
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let game = data[indexPath.row]
         self.navigationController?.pushViewController(GameDetailView(game: game), animated: true)
-        
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120 // 수동으로 높이를 설정
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            data.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // 필요한 경우 추가 구현
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
     }
 }
