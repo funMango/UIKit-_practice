@@ -17,18 +17,7 @@ class TableViewDemo: UITableViewController {
         self.view.backgroundColor = .white
         self.navigationItem.title = "Game List"
         self.navigationItem.rightBarButtonItem = editButtonItem
-        
-       
-        
-        // Search Bar
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.placeholder = "Search Game"
-        searchController.hidesNavigationBarDuringPresentation = false
-        
-        searchController.searchResultsUpdater = self
-        
-        self.navigationItem.searchController = searchController
-        self.navigationItem.hidesSearchBarWhenScrolling = false
+        configSearchBar()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +40,17 @@ class TableViewDemo: UITableViewController {
         view = tableView
     }
     
+    func configSearchBar() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "Search Game"
+        searchController.hidesNavigationBarDuringPresentation = false
+        
+        searchController.searchResultsUpdater = self
+        
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
     var isFiltering: Bool {
         let searchController = self.navigationItem.searchController
         let isActive = searchController?.isActive ?? false
@@ -66,18 +66,11 @@ extension TableViewDemo: UISearchResultsUpdating {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GameListCell.identifier, for: indexPath) as! GameListCell
-        let game = gameData[indexPath.row]
-        
+                
         if self.isFiltering {
-            cell.gameImg.image = UIImage(named: filteredGame[indexPath.row].image)
-            cell.title.text = filteredGame[indexPath.row].title
-            cell.releaseDate.text = filteredGame[indexPath.row].releaseDate
-            cell.deviceImg.image = UIImage(systemName: filteredGame[indexPath.row].deviceImg)
+            cell.configure(with: filteredGame[indexPath.row])
         } else {
-            cell.gameImg.image = UIImage(named: game.image)
-            cell.title.text = game.title
-            cell.releaseDate.text = game.releaseDate
-            cell.deviceImg.image = UIImage(systemName: game.deviceImg)
+            cell.configure(with: gameData[indexPath.row])
         }
         
         return cell
@@ -122,7 +115,11 @@ extension TableViewDemo: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text?.lowercased() else { return }
-        self.filteredGame = self.gameData.filter{ $0.title.contains(text) }
+        self.filteredGame = self.gameData.filter{
+            $0.title.uppercased().contains(text.uppercased()) ||
+            $0.develoer.uppercased().contains(text.uppercased()) ||
+            $0.publisher.uppercased().contains(text.uppercased())
+        }
         
         self.tableView.reloadData()
     }
