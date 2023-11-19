@@ -8,17 +8,27 @@
 import UIKit
 import SwiftUI
 
-class TableViewDemo: UITableViewController, UISearchResultsUpdating {
+class TableViewDemo: UITableViewController {
     var gameData = Game.data
+    var filteredGame : [Game] = []
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationItem.title = "Game List"
         self.navigationItem.rightBarButtonItem = editButtonItem
         
-        configSearchBar()
+       
+        
+        // Search Bar
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "Search Game"
+        searchController.hidesNavigationBarDuringPresentation = false
+        
+        searchController.searchResultsUpdater = self
+        
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -32,23 +42,6 @@ class TableViewDemo: UITableViewController, UISearchResultsUpdating {
         }
     }
     
-    func configSearchBar() {
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.placeholder = "검색 입력"
-        searchController.obscuresBackgroundDuringPresentation = true
-        searchController.searchResultsUpdater = self
-        
-        self.navigationItem.searchController = searchController
-        self.navigationItem.hidesSearchBarWhenScrolling = false
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
-
-        gameData = Game.data.filter { $0.title.contains(text) }
-        self.tableView.reloadData()
-    }
-
     // loadView를 사용하여 tableView를 직접 할당
     override func loadView() {
         tableView = UITableView()
@@ -57,27 +50,48 @@ class TableViewDemo: UITableViewController, UISearchResultsUpdating {
         tableView.register(GameListCell.self, forCellReuseIdentifier: GameListCell.identifier)
         view = tableView
     }
+    
+    var isFiltering: Bool {
+        let searchController = self.navigationItem.searchController
+        let isActive = searchController?.isActive ?? false
+        let isSearchBarHasText = searchController?.searchBar.text?.isEmpty == false
+        return isActive && isSearchBarHasText
+    }
 }
 
-extension TableViewDemo {
+extension TableViewDemo: UISearchResultsUpdating {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.gameData.count
+        return self.isFiltering ? self.filteredGame.count : self.gameData.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GameListCell.identifier, for: indexPath) as! GameListCell
         let game = gameData[indexPath.row]
-
-        cell.gameImg.image = UIImage(named: game.image)
-        cell.title.text = game.title
-        cell.releaseDate.text = game.releaseDate
-        cell.deviceImg.image = UIImage(systemName: game.deviceImg)
-
+        
+        if self.isFiltering {
+            cell.gameImg.image = UIImage(named: filteredGame[indexPath.row].image)
+            cell.title.text = filteredGame[indexPath.row].title
+            cell.releaseDate.text = filteredGame[indexPath.row].releaseDate
+            cell.deviceImg.image = UIImage(systemName: filteredGame[indexPath.row].deviceImg)
+        } else {
+            cell.gameImg.image = UIImage(named: game.image)
+            cell.title.text = game.title
+            cell.releaseDate.text = game.releaseDate
+            cell.deviceImg.image = UIImage(systemName: game.deviceImg)
+        }
+        
         return cell
     }
-
+        
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let game = gameData[indexPath.row]
+        let game : Game
+        
+        if self.isFiltering {
+            game = filteredGame[indexPath.row]
+        } else {
+            game = gameData[indexPath.row]
+        }
+                        
         self.navigationController?.pushViewController(GameDetailView(game: game), animated: true)
     }
     
@@ -104,6 +118,13 @@ extension TableViewDemo {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text?.lowercased() else { return }
+        self.filteredGame = self.gameData.filter{ $0.title.contains(text) }
+        
+        self.tableView.reloadData()
     }
 }
 

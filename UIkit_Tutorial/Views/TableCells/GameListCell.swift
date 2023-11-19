@@ -64,6 +64,13 @@ class GameListCell: UITableViewCell {
             deviceImg.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
         ])
     }
+    
+    func configure(with game: Game) {
+        gameImg.image = UIImage(named: game.image)
+        title.text = game.title
+        releaseDate.text = game.releaseDate
+        deviceImg.image = UIImage(systemName: game.deviceImg)
+    }
 
 }
 
