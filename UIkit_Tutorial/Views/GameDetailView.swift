@@ -40,6 +40,20 @@ class GameDetailView: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    lazy var plusBtn: UIButton = {
+        let button = UIButton()
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
+        let image = UIImage(systemName: "plus.circle", withConfiguration: imageConfig)
+        button.setImage(image, for: .normal)
+        button.tintColor = .systemBlue // SF Symbol의 색상 설정 (원하는 색상으로 변경 가능)
+        button.addTarget(self, action: #selector(plusBtnTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func plusBtnTapped() {
+        
+    }
+    
     lazy var gameImage: UIImageView = {
       let imageView = UIImageView()
       imageView.contentMode = .scaleAspectFill
@@ -79,6 +93,7 @@ class GameDetailView: UIViewController {
     func layout() {
         self.view.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        contentView.addSubview(plusBtn)
         contentView.addSubview(gameImage)
         contentView.addSubview(gameTitle)
         contentView.addSubview(publisherLabel)
@@ -107,14 +122,19 @@ class GameDetailView: UIViewController {
         let contentViewHeight = contentView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor)
         contentViewHeight.priority = .defaultLow
         contentViewHeight.isActive = true
-        
-        
+                
         let leadingValue: CGFloat = 30
         let trailingValue: CGFloat = -30
         
+        plusBtn.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            plusBtn.topAnchor.constraint(equalTo: contentView.topAnchor),
+            plusBtn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: trailingValue),
+        ])
+        
         gameImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            gameImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            gameImage.topAnchor.constraint(equalTo: plusBtn.bottomAnchor, constant: 10),
             gameImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: leadingValue),
             gameImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: trailingValue),
             gameImage.widthAnchor.constraint(equalToConstant: 400),
