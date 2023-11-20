@@ -34,10 +34,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        window?.makeKeyAndVisible()
         
         // navigationController 등록
+//        guard let scene = (scene as? UIWindowScene) else { return }
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        let navVC = UINavigationController(rootViewController: TableViewDemo())
+//        window?.rootViewController = navVC
+//        window?.windowScene = scene
+//        window?.makeKeyAndVisible()
+        
+        // TabBarView 등록
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
-        let navVC = UINavigationController(rootViewController: TableViewDemo())
-        window?.rootViewController = navVC
+        let tabBarVC = UINavigationController(rootViewController: TabBarController())
+        window?.rootViewController = tabBarVC
         window?.windowScene = scene
         window?.makeKeyAndVisible()
     }

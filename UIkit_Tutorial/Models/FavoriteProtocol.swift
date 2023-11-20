@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol FavoriteProtocol: AnyObject {
+    func save(_ viewController: FavoriteListView)            
+}

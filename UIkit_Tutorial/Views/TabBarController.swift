@@ -7,14 +7,24 @@
 
 import UIKit
 
-class TabBarController: UIViewController {
+class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = .white
+        addViewController()
     }
     
+    func addViewController() {
+        let homeVC = TableViewDemo()
+        let favoriteVC = FavoriteListView()
+        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+        
+        favoriteVC.tabBarItem = UITabBarItem(title: "Favorite", image: UIImage(systemName: "star"), selectedImage: UIImage(systemName: "star.fill"))
+        
+        
+        self.viewControllers = [homeVC, favoriteVC]
+    }
 
     /*
     // MARK: - Navigation

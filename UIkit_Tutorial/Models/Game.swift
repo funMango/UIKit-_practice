@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Game: Hashable {
+struct Game: Hashable, Equatable {
     let title: String
     let image: String
     let publisher: String

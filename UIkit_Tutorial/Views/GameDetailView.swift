@@ -8,26 +8,8 @@
 import UIKit
 import SwiftUI
 
-class GameDetailView: UIViewController {    
-    
-    private var game = Game(
-       title: "Default",
-       image: "OdysseyOrigin",
-       publisher: "Default",
-       develoer: "Default",
-       description:
-           """
-           ASSASSIN’S CREED® ORIGINS에서 펼쳐지는 새로운 시작
-           위엄과 음모가 공존하던 시대, 고대 이집트가 무자비한 권력 투쟁 속에 사라져 갈 위기에 처해 있습니다. 암살단이 창립된 그때로 돌아가 잔혹한 비밀과 잊혀진 신화의 베일을 벗기십시오.\n
-           전설 속의 국가를 체험하십시오\n
-           나일 강을 항해하고, 이 거대하고 예측불가한 지역을 탐험하며 피라미드의 신비를 밝히거나 위험한 고대 세력 및 야수들과 싸우십시오.\n
-           ASSASSIN’S CREED® ORIGINS에서 펼쳐지는 새로운 시작
-           위엄과 음모가 공존하던 시대, 고대 이집트가 무자비한 권력 투쟁 속에 사라져 갈 위기에 처해 있습니다. 암살단이 창립된 그때로 돌아가 잔혹한 비밀과 잊혀진 신화의 베일을 벗기십시오.\n
-           전설 속의 국가를 체험하십시오\n
-           나일 강을 항해하고, 이 거대하고 예측불가한 지역을 탐험하며 피라미드의 신비를 밝히거나 위험한 고대 세력 및 야수들과 싸우십시오.
-           """,
-       releaseDate: "2017. 10. 27.",
-       deviceImg: "xbox.logo")
+class GameDetailView: UIViewController {
+    private var game: Game
     let scrollView = UIScrollView()
     let contentView = UIView()
     
@@ -51,7 +33,8 @@ class GameDetailView: UIViewController {
     }()
     
     @objc func plusBtnTapped() {
-        
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.favorite.save(with: game)
     }
     
     lazy var gameImage: UIImageView = {
@@ -89,6 +72,8 @@ class GameDetailView: UIViewController {
         self.view.backgroundColor = .white
         layout()
     }
+    
+    
     
     func layout() {
         self.view.addSubview(scrollView)
